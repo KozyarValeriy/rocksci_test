@@ -36,7 +36,7 @@ class PortfolioPrice:
 		for i in range(1, len(interval)):
 			asset.loc[interval[i]] = asset.loc[interval[i-1]] * (1 + 
 									 self._with_weight_per_day(
-									 interval[i], self._asset_per_two_day))
+									 	interval[i], self._asset_per_two_day))
 		return asset
 
 	def _asset_per_two_day(self, date):
@@ -52,7 +52,7 @@ class PortfolioPrice:
 		price = np.array([])
 		#Get index of specified date in prices
 		index = self.prices.loc[self.prices[
-								self.prices.columns[0]] == date].index[0]
+									self.prices.columns[0]] == date].index[0]
 		seq = (index - 1, index) if index > 0 else (index, index)
 		for i in seq:
 			price = np.append(price, self._find_valid_value(i, self.prices))
@@ -91,7 +91,7 @@ class PortfolioPrice:
 		date = self._get_valid_date(date, self.weights)
 		#Get index of specified date in weights
 		index = self.weights.loc[self.weights[
-								 self.weights.columns[0]] == date].index[0]
+								 	self.weights.columns[0]] == date].index[0]
 		return self._find_valid_value(index, self.weights)
 
 	def _find_valid_value(self, index, element):
